@@ -1,66 +1,24 @@
-## Foundry
+## Fart Rescue
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+The farts could have been saved, either by using an access list or by using the method I demonstrated here.
 
-Foundry consists of:
+Basically, we need to warm up the SAFE wallet address before executing our transfer.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This can be done by using an access list, or by executing the `withdrawToPurple` function from the SAFE wallet itself.
 
-## Documentation
+This Repo demos the second option.
 
-https://book.getfoundry.sh/
+## Rescue Steps
 
-## Usage
+1. Transfer token ownership to the SAFE wallet
+2. Queue a transaction that calls `withdrawToPurple` from the SAFE owner address
+3. Execute that transaction
 
-### Build
+Results:
 
-```shell
-$ forge build
-```
 
-### Test
+### Run this yourself
 
-```shell
-$ forge test
-```
+the `foundry.toml` file already has the fork block number set up, you just need to provide an RPC endpoint when you call forge test as follows:
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+` forge test --fork-url <RPC_URL> --match-test testRescueFarts -vvv`

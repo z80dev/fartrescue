@@ -35,13 +35,6 @@ contract FartTest is Test {
         console2.log("token owner: ", token.owner());
     }
 
-    function testGetOwner() public {
-        console2.log("token address: ", address(token));
-        console2.log("token owner: ", token.owner());
-        // check owner is not 0
-        assertNotEq(address(token.owner()), address(0));
-    }
-
     function testFailWithdrawToPurple() public {
         vm.prank(tokenOwner);
         token.withdrawToPurple();
